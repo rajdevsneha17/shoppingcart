@@ -2,11 +2,12 @@ const express=require("express")
 const app=express()
 const PORT=process.env.PORT||7000
 const cors = require('cors');
-app.use(cors({
-    origin: ['https://shoppingcart-fss.vercel.app'], // Allow all origins
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-credentials:true
-}));
+const corsOptions = {
+    origin: 'https://shoppingcart-fss.vercel.app',
+    optionsSuccessStatus: 200 // For legacy browser support
+  };
+  app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'https://shoppingcart-fss.vercel.app');
