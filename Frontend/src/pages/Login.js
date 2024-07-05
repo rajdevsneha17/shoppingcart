@@ -23,7 +23,7 @@ const Login = () => {
     const submitHandler=async (event)=>{
      event.preventDefault()
      try{
-      const res=await axios.post("https://shoppingcart-bbb.vercel.app/login",data).then(res=>{
+      const res=await axios.post("https://shoppingcart-2.onrender.com/login",data).then(res=>{
         if(res.data=="incorrect"){
             toast.error("Incorrect Password")
         }

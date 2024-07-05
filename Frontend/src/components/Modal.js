@@ -19,7 +19,7 @@ const Modal = ({ setShowModal, totalAmount }) => {
         setError("");
       }, 3000);
     } else {
-      axios.post("https://shoppingcart-bbb.vercel.app/order", data)
+      axios.post("https://shoppingcart-2.onrender.com/order", data)
         .then(res => {
           if (res.data === "notexist") {
             toast.error("Please Login or Signup First");
