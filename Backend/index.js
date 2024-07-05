@@ -3,10 +3,9 @@ const app=express()
 const PORT=process.env.PORT||7000
 const cors = require('cors');
 app.use(cors({
-    origin: '*', // Allow all origins
+    origin: ['https://shoppingcart-fss.vercel.app'], // Allow all origins
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials:true
+credentials:true
 }));
 app.use(express.json())
 
