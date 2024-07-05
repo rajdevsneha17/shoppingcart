@@ -32,7 +32,7 @@ const Signup = () => {
            
         }
         try {
-            const response = await axios.post("https://shoppingcart-bbb.vercel.app/sendmail",data,
+            const response = await axios.post("https://shoppingcart-2.onrender.com/sendmail",data,
                 { withCredentials: false}
             )
             .then(res=>{
