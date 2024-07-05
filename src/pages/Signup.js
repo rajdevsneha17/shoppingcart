@@ -33,7 +33,7 @@ const Signup = () => {
         }
         try {
             const response = await axios.post("https://shoppingcart-bbb.vercel.app/api/v1/sendmail",data,
-                { withCredentials: true }
+                { withCredentials: false}
             )
             .then(res=>{
                 if(res.data=="exist"){
