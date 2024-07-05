@@ -4,7 +4,8 @@ const PORT=process.env.PORT||7000
 const cors = require('cors');
 const corsOptions = {
     origin: 'https://shoppingcart-fss.vercel.app',
-    optionsSuccessStatus: 200 // For legacy browser support
+    optionsSuccessStatus: 200, // For legacy browser support,
+    credentials:true
   };
   app.use(cors(corsOptions));
   app.options('*', cors(corsOptions));
