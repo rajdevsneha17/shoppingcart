@@ -2,10 +2,9 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { useNavigate,Link } from 'react-router-dom';
-//import Bag from "../assets/Bag.avif"
- // import Bag1 from "../assets/Bag2.avif"
-import Bag2 from "../assets/Bag3.avif"
+
 const Signup = () => {
+    const [loading, setLoading] = useState(false);
     const navigate=useNavigate()
     const [error, setError] = useState('');
     const[login,setSignup]=useState(false)
@@ -23,6 +22,7 @@ const Signup = () => {
     })
     const submitHandler=async(event)=>{
         event.preventDefault()
+        
         if (!data.email || !data.firstname || !data.lastname|| !data.password) {
             setError("please fill all the fields")
         setTimeout(()=>{
@@ -32,10 +32,12 @@ const Signup = () => {
            
         }
         try {
+            setLoading(true);
             const response = await axios.post("https://shoppingcart-2.onrender.com/sendmail",data,
                 { withCredentials: false}
             )
             .then(res=>{
+                setLoading(false);
                 if(res.data=="exist"){
                
                 toast.error("Already Signed in ")
@@ -105,8 +107,8 @@ const Signup = () => {
                         />
                     </div>
                     <div className="flex justify-center items-center mt-6">
-                        <button type="submit" className="border-2 border-gray-300 rounded-md p-2 pl-4 pr-4 hover:bg-slate-300">
-                            Submit
+                        <button type="submit"  className="border-2 border-gray-300 rounded-md p-2 pl-4 pr-4 hover:bg-slate-300" disabled={loading}>
+                            {loading ? 'Loading...' : 'Signup'}
                         </button>
                     </div>
                     {error && <div className="text-red-500 text-center mt-3">{error}</div>}

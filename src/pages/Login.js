@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 // import { Link } from 'react-router-dom'
 const Login = () => {
     const navigate=useNavigate()
+    const [loading, setLoading] = useState(false);
     const [data,setData]=useState({
         email:"",
         password:""
@@ -23,6 +24,7 @@ const Login = () => {
     const submitHandler=async (event)=>{
      event.preventDefault()
      try{
+      setLoading(true);
       const res=await axios.post("https://shoppingcart-2.onrender.com/login",data).then(res=>{
         if(res.data=="incorrect"){
             toast.error("Incorrect Password")
@@ -60,7 +62,9 @@ const Login = () => {
       <input type="password" onChange={changeHandler} name="password" value={data.password} className='border-2 border-gray-300 rounded-md p-2 w-80 flex justify-center items-center 'minlength="8"></input>
      </div>
      <div className='flex justify-center items-center  mt-7 '>
-        <button type="submit" onClick={submitHandler} className='border-2 border-gray-300 rounded-md p-2 pl-4 pr-4 hover:bg-slate-300  '>Login</button>
+        <button type="submit" onClick={submitHandler} className='border-2 border-gray-300 rounded-md p-2 pl-4 pr-4 hover:bg-slate-300' disabled={loading}>
+        {loading ? 'Loading...' : 'Submit'}
+          </button>
     </div>
     <div className='flex justify-center items-center mt-10'><NavLink to="/signup">Don't have an account ? Signup</NavLink></div>
     </div>
